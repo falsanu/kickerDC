@@ -41,8 +41,8 @@ http://kb.sloppy.io
 
 ## Dependencies
 
-Beside the needed node modules collected in the `package.json` you need `MangoDB`.
+Beside the needed node modules collected in the `package.json` you need `MongoDB`.
 
 ## Server
 
-To start se server use the `server.bin`. It will a create a nodemon server with the port `8080` and start your `MangoDB`. The collected data of `MangoDb` will be stored in the project folder in `./mango-data/`
+To start se server use the `server.bin`. It will a create a nodemon server with the port `8080` and start your `MongoDB`. The collected data of `MongoDb` will be stored in the project folder in `./mongo-data/`
