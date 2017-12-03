@@ -61,4 +61,4 @@ typings/
 .idea/
 
 # mongo db files
-# mongo-data/
+mongo-data/
