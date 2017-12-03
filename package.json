@@ -5,5 +5,17 @@
   "main": "index.js",
   "repository": "https://github.com/falsanu/kickerDC",
   "author": "Jan Fanslau <jan@falsanu.de>",
-  "license": "GNU GPLv3"
+  "license": "GNU GPLv3",
+  "scripts": {
+    "dev": "nodemon backend/main.js",
+    "test": "mocha backend/tests --recursive --watch"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.5"
+  }
 }
