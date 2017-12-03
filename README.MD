@@ -39,3 +39,10 @@ http://kb.sloppy.io
 - clean code as good as possible :)
 - function first / basic security 
 
+## Dependencies
+
+Beside the needed node modules collected in the `package.json` you need `MangoDB`.
+
+## Server
+
+To start se server use the `server.bin`. It will a create a nodemon server with the port `8080` and start your `MangoDB`. The collected data of `MangoDb` will be stored in the project folder in `./mango-data/`

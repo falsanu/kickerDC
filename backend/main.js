@@ -25,5 +25,4 @@ const routes = require('./routes/table/table.route'); //importing route
 routes(app); //register the route
 
 // Starting Server
-app.listen(port);
-
+const server = app.listen(port);

@@ -1,1 +1,69 @@
-<h1>Hello word!</h1>;
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KickerDC</title>
+    <style>
+        table {
+            width: 100%;
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        thead {
+            background: #1f1f1f;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+        td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Kicker Dashcam</h1>
+
+<table>
+    <thead>
+    <tr>
+        <td>url</td>
+        <td>method</td>
+        <td>response</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>/table</td>
+        <td><code>GET</code></td>
+        <td>Returns all tables in an array</td>
+    </tr>
+    <tr>
+        <td>/table</td>
+        <td><code>PUT</code></td>
+        <td>Creates a new table and returns it</td>
+    </tr>
+    <tr>
+        <td>/table/:tableId</td>
+        <td><code>GET</code></td>
+        <td>Returns the data set from the database when found by tableId.</td>
+    </tr>
+    <tr>
+        <td>/table/:tableId</td>
+        <td><code>PUT</code></td>
+        <td>Sets <code>occupied</code> to <code>true</code> and <code>occupiedUntil</code> to the moment when the function is called of the table matching to the given parameter. </td>
+    </tr>
+    <tr>
+        <td>/table/occupy/:tableId</td>
+        <td><code>GET</code></td>
+        <td>Finds the table with the given Id and set it occupied. It will be reset after 30 minutes by the server.</td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="main.js"></script>
+</body>
+</html>

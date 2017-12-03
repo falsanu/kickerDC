@@ -11,9 +11,9 @@ const schema = new Schema({
     required: true,
     default: false
   },
-  lastTimeOccupied: {
-    type: Date,
-    default: new Date().getTime() - (1000 * 60 * 30)
+  occupiedUntil: {
+    type: Number,
+    default: new Date().getTime()
   }
 });
 

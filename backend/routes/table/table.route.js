@@ -9,6 +9,9 @@ module.exports = function(app) {
 
   app.route('/table/:tableId')
     .get(tableCtrl.getTable)
-    .put(tableCtrl.updateTableState);
+    .put(tableCtrl.resetTable);
+
+  app.route('/table/occupy/:tableId')
+    .get(tableCtrl.updateTableOccupied);
 };
 
