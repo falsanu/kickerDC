@@ -1,0 +1,12 @@
+{
+  "name": "Buzzer",
+  "version": "1.0.0",
+  "description": "Buzzer Sends API-Call",
+  "main": "index.js",
+  "repository": "https://github.com/falsanu/kickerDC/",
+  "author": "Jan Fanslau",
+  "license": "GNU v3",
+  "dependencies": {
+    "johnny-five": "^0.11.7"
+  }
+}
