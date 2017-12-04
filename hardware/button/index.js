@@ -1,8 +1,9 @@
 var five = require('johnny-five'),
 	board, button;
-const request = require('request')
+const request = require('request');
 
-const apiEndpoint = process.env.API_ENDPOINT || 'http://localhost/'
+const apiEndpoint = process.env.API_ENDPOINT || 'http://localhost:8080/';
+const tableID = process.env.TABLE_ID;
 
 board = new five.Board();
 
@@ -11,7 +12,7 @@ board.on("ready", function () {
 // Create a new `button` hardware instance.
 // This example allows the button module to
 // create a completely default instance
-	button = new five.Button(2);
+	button = new five.Button(8);
 
 // Inject the `button` hardware into
 // the Repl instance's context;
@@ -26,18 +27,20 @@ board.on("ready", function () {
 	button.on("down", function () {
 		console.log("down");
 		console.log("send Data to API")
-
+		const path = `${apiEndpoint}/table/occupy/${tableID}`;
+		console.log(`Sending Request to: ${path}`);
 		request({
-			url: apiEndpoint + '/table/occupy/1',
+			url: path,
 			method: 'GET'
-		}, function (error, response) {
+		}, function (error, response, body) {
 			if (error) {
 				console.log(error.message);
 			}
 			if (!error && response.statusCode == 200) {
 				console.log(response.statusCode)
+			} else {
+				console.log(response.body)
 			}
-
 		});
 
 	});
