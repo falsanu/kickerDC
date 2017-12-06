@@ -1,0 +1,12 @@
+{
+  "name": "Display",
+  "version": "1.0.0",
+  "description": "Display reads data from websocket",
+  "main": "index.js",
+  "repository": "https://github.com/falsanu/kickerDC/",
+  "author": "Jan Fanslau",
+  "license": "GNU GPLv3",
+  "dependencies": {
+    "johnny-five": "^0.11.7"
+  }
+}
