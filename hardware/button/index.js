@@ -12,7 +12,7 @@ board.on("ready", function () {
 // Create a new `button` hardware instance.
 // This example allows the button module to
 // create a completely default instance
-	button = new five.Button(8);
+	button = new five.Button(13);
 
 // Inject the `button` hardware into
 // the Repl instance's context;
@@ -39,7 +39,7 @@ board.on("ready", function () {
 			if (!error && response.statusCode == 200) {
 				console.log(response.statusCode)
 			} else {
-				console.log(response.body)
+				console.log(body)
 			}
 		});
 
