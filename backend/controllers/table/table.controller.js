@@ -3,7 +3,7 @@ const Table = mongoose.model('Table');
 const Hash = require('../../models/helper/hash.model');
 const ServiceModel = require('../../../env/model/Service.model');
 
-const occupiedTime = 1000 * 5;  //ms s m
+const occupiedTime = 1000 * 60 * 30;  //ms s m - 30min
 
 
 function occupyTable(tableId) {
