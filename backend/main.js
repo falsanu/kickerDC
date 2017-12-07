@@ -1,16 +1,18 @@
 // Loading dependencies
 const config = require('./config/config.json');
-const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
-// Setting environment variables
+const express = require('express');
 const app = express();
+// Setting environment variables
 const port = config.port;
 
 // Loading tables
 const Table = require('./models/table/table.model');
+
+// Loading Services to inject dependencies
+const TableController = require('./controllers/table/table.controller');
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise;
@@ -25,4 +27,10 @@ const routes = require('./routes/table/table.route'); //importing route
 routes(app); //register the route
 
 // Starting Server
-const server = app.listen(port);
+let server = app.listen(port);
+
+const io = require('socket.io')(server);
+
+
+// injecting dependencies
+TableController.importDependency('sockets', io);
