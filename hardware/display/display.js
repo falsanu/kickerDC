@@ -1,5 +1,5 @@
 const five = require('johnny-five');
-// const request = require('request');
+var ws = require('ws');
 
 // const apiEndpoint = process.env.API_ENDPOINT || 'http://localhost:8080/';
 // const tableID = process.env.TABLE_ID;
@@ -18,6 +18,9 @@ let D2;
 let D3;
 let D4;
 
+var webSocket = new ws('ws://demos.kaazing.com/echo');
+let boardReady = false;
+
 board.on("ready", function () {
 
 	pinA = new five.Pin(2);
@@ -32,16 +35,25 @@ board.on("ready", function () {
 	D3 = new five.Pin(11);
 	D4 = new five.Pin(12);
 
-	let i = 0;
-
-	setInterval(()=>{
-		if (i>9) {
-			i = 0;
-		}
+	this.loop(1, function(){
+		setActiveColumn(1,0,1,1)
+		setNumber(3)
 		setActiveColumn(1,1,1,0)
-		setNumber(i)
-		i++;
-	}, 500)
+		setNumber(2)
+	})
+
+	// let i = 0;
+
+	// setInterval(()=>{
+	// 	if (i>9) {
+	// 		i = 0;
+	// 	}
+	// 	setActiveColumn(1,1,1,0)
+	// 	setNumber(i)
+	// 	i++;
+	// }, 500)
+
+	boardReady = true;
 });
 
 function setActiveColumn(column1 = 0, column2 = 0, column3 = 0, column4 = 0) {
@@ -150,3 +162,24 @@ function setNumber(number) {
 }
 
 
+
+webSocket.on('open', function () {
+	console.log('Connected!');
+
+	// setInterval(()=>{
+	// 	webSocket.send(JSON.stringify({teamA:randbetween(0,6), teamB: randbetween(0,6)}));
+	// },1000)
+});
+
+webSocket.on('message', function (data, flags) {
+	console.log(data);
+	data = JSON.parse(data)
+	if(boardReady) {
+	setActiveColumn(1,0,1,1)
+	setNumber(data.teamA)
+	setActiveColumn(1,1,1,0)
+	setNumber(data.teamB)
+	}
+});
+
+function randbetween(min,max ) { return Math.floor(Math.random() * (max - min + 1)) + min; }

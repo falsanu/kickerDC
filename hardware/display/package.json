@@ -7,6 +7,7 @@
   "author": "Jan Fanslau",
   "license": "GNU GPLv3",
   "dependencies": {
-    "johnny-five": "^0.11.7"
+    "johnny-five": "^0.11.7",
+    "ws": "^3.3.2"
   }
 }
