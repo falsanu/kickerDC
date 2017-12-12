@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+
+  app:
+    build: .
+    ports:
+      - "8081:8080"
+      - "8090:8090"
+    volumes:
+      - .:/app
+    environment:
+      - SERVER_PORT=8080
+      - MONGO_CONNECTION_STRING=mongodb://mongo/KickerDC
+      - NODE_ENV=development
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    volumes:
+      - ./mongo-data:/data/db
