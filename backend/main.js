@@ -3,8 +3,11 @@ const config = require('./config/config.json');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const express = require('express');
 const app = express();
+const ws = require('express-ws')(app);
+
 // Setting environment variables
 const port = config.port;
 
@@ -22,6 +25,8 @@ mongoose.connect('mongodb://localhost/KickerDC');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(cors());
+app.options('*', cors());
 
 const routes = require('./routes/table/table.route'); //importing route
 routes(app); //register the route
@@ -29,8 +34,21 @@ routes(app); //register the route
 // Starting Server
 let server = app.listen(port);
 
-const io = require('socket.io')(server);
+/**
+ * this part for SSL server
 
+ const privateKey = fs.readFileSync( 'privatekey.pem' );
+ const certificate = fs.readFileSync( 'certificate.pem' );
 
-// injecting dependencies
-TableController.importDependency('sockets', io);
+ https.createServer({
+    key: privateKey,
+    cert: certificate
+}, app).listen(port);
+ */
+
+app.ws('/', function(ws, req) {
+  ws.on('foo', function(msg) {
+    console.log(msg);
+  });
+  console.log('socket', req.testing);
+});
