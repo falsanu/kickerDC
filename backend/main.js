@@ -6,7 +6,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const ws = require('express-ws')(app);
+// const ws = require('express-ws')(app);
+
+
+
+const mongoConnectionString = process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost/KickerDC';
+const serverPort = process.env.SERVER_PORT || 8080;
+const socketPort = process.env.SOCKET_PORT || 8090;
+
+
+
 
 // Setting environment variables
 const port = config.port;
@@ -19,7 +28,7 @@ const TableController = require('./controllers/table/table.controller');
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/KickerDC');
+mongoose.connect(mongoConnectionString);
 
 // Configure the server
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,8 +40,28 @@ app.options('*', cors());
 const routes = require('./routes/table/table.route'); //importing route
 routes(app); //register the route
 
+
 // Starting Server
-let server = app.listen(port);
+let server = app.listen(serverPort);
+
+const io = require('socket.io')(socketPort);
+io.on('connection', function(socket){
+	console.log('a user connected');
+	socket.on('disconnect', function(){
+		console.log('user disconnected');
+	});
+
+	socket.on('foo', (msg)=>{
+		console.log(msg)
+	})
+});
+
+
+
+
+
+
+
 
 /**
  * this part for SSL server
@@ -46,9 +75,4 @@ let server = app.listen(port);
 }, app).listen(port);
  */
 
-app.ws('/', function(ws, req) {
-  ws.on('foo', function(msg) {
-    console.log(msg);
-  });
-  console.log('socket', req.testing);
-});
+
