@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-const routes = require('./routes/table/table.route'); //importing route
+const routes = require('./routes/routes'); //importing route
 routes(app); //register the route
 
 // Starting Server

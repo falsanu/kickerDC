@@ -53,8 +53,10 @@ class TableControllerModel extends ServiceModel {
 
   resetTable(req, res) {
     Table.findOneAndUpdate({tableId: req.params.tableId}, {occupiedUntil: new Date().getTime(), occupied: false}, function(err, table) {
-      if (err)
+      if (err) {
         res.send(err);
+      }
+      TableController.deps.sockets.emit('table::occupied::false', table);
       res.json(table);
     });
   }
