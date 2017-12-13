@@ -9,7 +9,8 @@
   "scripts": {
     "prestart": "npm install",
     "dev": "nodemon backend/main.js",
-    "test": "mocha backend/tests --recursive --watch"
+    "test": "mocha backend/tests --recursive --watch",
+    "start": "node backend/main.js",
   },
   "devDependencies": {
     "chai": "^4.1.2",
