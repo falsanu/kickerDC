@@ -14,6 +14,8 @@ const https = require('https');
 const mongoConnectionString = process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost/KickerDC';
 const serverPort = process.env.SERVER_PORT || 8080;
 const socketPort = process.env.SOCKET_PORT || 8090;
+const pathToKey = process.env.PATH_TO_KEY || 'privatekey.pem';
+const pathToCert = process.env.PATH_TO_CERT || 'certificate.pem';
 
 
 
@@ -46,8 +48,12 @@ routes(app); //register the route
 let server = app.listen(serverPort);
 
 
-const privateKey = fs.readFileSync( 'privatekey.pem' );
-const certificate = fs.readFileSync( 'certificate.pem' );
+
+// Creating HTTPS Socket Server
+// This is kind of creepy, but it works
+
+const privateKey = fs.readFileSync( pathToKey );
+const certificate = fs.readFileSync( pathToCert );
 
 const socketServer = https.createServer({
 	key: privateKey,
