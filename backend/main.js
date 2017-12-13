@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const app = express();
+const https = require('https');
 // const ws = require('express-ws')(app);
 
 
@@ -44,7 +45,25 @@ routes(app); //register the route
 // Starting Server
 let server = app.listen(serverPort);
 
-const io = require('socket.io')(socketPort);
+
+const privateKey = fs.readFileSync( 'privatekey.pem' );
+const certificate = fs.readFileSync( 'certificate.pem' );
+
+const socketServer = https.createServer({
+	key: privateKey,
+	cert: certificate
+}, app).listen(socketPort);
+
+const io = require('socket.io')(socketServer, {
+	// path: '/test',
+		serveClient: true,
+
+	// below are engine.IO options
+	pingInterval: 10000,
+	pingTimeout: 5000,
+	cookie: false
+});
+
 io.on('connection', function(socket){
 	console.log('a user connected');
 	socket.on('disconnect', function(){
