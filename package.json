@@ -2,7 +2,7 @@
   "name": "kickerDC",
   "version": "1.0.0",
   "description": "The Kicker Dashcam Project",
-  "main": "index.js",
+  "main": "backend/main.js",
   "repository": "https://github.com/falsanu/kickerDC",
   "author": "Jan Fanslau <jan@falsanu.de>",
   "license": "GNU GPLv3",

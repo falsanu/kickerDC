@@ -3,7 +3,7 @@ class ServiceModel {
     this.deps = {};
   }
 
-  importDependency(name, dep) {
+  injectDependency(name, dep) {
     this.deps[name] = dep;
   }
 }
