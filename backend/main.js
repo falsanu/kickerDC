@@ -62,8 +62,7 @@ const socketServer = https.createServer({
 }, app).listen(socketPort);
 
 const io = require('socket.io')(socketServer, {
-	// path: '/test',
-		serveClient: true,
+	serveClient: true,
 
 	// below are engine.IO options
 	pingInterval: 10000,
@@ -71,34 +70,5 @@ const io = require('socket.io')(socketServer, {
 	cookie: false
 });
 
-io.on('connection', function(socket){
-	console.log('a user connected');
-	socket.on('disconnect', function(){
-		console.log('user disconnected');
-	});
-
-	socket.on('foo', (msg)=>{
-		console.log(msg)
-	})
-});
-
-
-
-
-
-
-
-
-/**
- * this part for SSL server
-
- const privateKey = fs.readFileSync( 'privatekey.pem' );
- const certificate = fs.readFileSync( 'certificate.pem' );
-
- https.createServer({
-    key: privateKey,
-    cert: certificate
-}, app).listen(port);
- */
-
+TableController.importDependency('sockets', io);
 

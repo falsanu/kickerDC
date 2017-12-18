@@ -13,7 +13,7 @@ function occupyTable(tableId) {
       if (err) {
         console.error(err);
       }
-      // TableController.deps.sockets.emit('table::occupied::false', table);
+      TableController.deps.sockets.emit('table::occupied::false', table);
     });
   }, occupiedTime);
 }
@@ -73,7 +73,7 @@ class TableControllerModel extends ServiceModel {
             if(err) {
               res.send(err);
             }
-            // TableController.deps.sockets.emit('table::occupied::true', table);
+            TableController.deps.sockets.emit('table::occupied::true', table);
             occupyTable(req.params.tableId);
             res.json(table);
           });
