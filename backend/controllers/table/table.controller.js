@@ -13,7 +13,7 @@ function occupyTable(tableId) {
       if (err) {
         console.error(err);
       }
-      // TableController.deps.sockets.emit('table::occupied::false', table);
+      TableController.deps.sockets.emit('table::occupied::false', table);
     });
   }, occupiedTime);
 }
@@ -55,6 +55,7 @@ class TableControllerModel extends ServiceModel {
     Table.findOneAndUpdate({tableId: req.params.tableId}, {occupiedUntil: new Date().getTime(), occupied: false}, function(err, table) {
       if (err)
         res.send(err);
+      TableController.deps.sockets.emit('table::occupied::false', table);
       res.json(table);
     });
   }
@@ -71,7 +72,7 @@ class TableControllerModel extends ServiceModel {
             if(err) {
               res.send(err);
             }
-            // TableController.deps.sockets.emit('table::occupied::true', table);
+            TableController.deps.sockets.emit('table::occupied::true', table);
             occupyTable(req.params.tableId);
             res.json(table);
           });

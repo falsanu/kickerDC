@@ -17,7 +17,7 @@ const {
 	pathToKey,
 	pathToCert,
 	nodeEnv,
-} = config
+} = config;
 
 // Loading tables
 const Table = require('./models/table/table.model');
@@ -42,7 +42,7 @@ routes(app); //register the route
 // Starting Server
 let server = app.listen(serverPort);
 
-let socketServer
+let socketServer = null;
 
 if (nodeEnv === 'development') {
 	socketServer = http.createServer(app)
@@ -79,3 +79,5 @@ io.on('connection', function(socket){
 		console.log(msg)
 	})
 });
+
+TableController.injectDependency('sockets', io);
