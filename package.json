@@ -9,15 +9,17 @@
   "scripts": {
     "prestart": "npm install",
     "dev": "nodemon backend/main.js",
-    "test": "mocha backend/tests --recursive --watch"
+    "test": "mocha backend/tests --recursive --watch",
+    "start": "node backend/main.js"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
     "mongodb": "^2.2.33",
     "nodemon": "^1.12.1"
   },
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.2",
-    "mongoose": "^4.13.5"
+    "mongoose": "^4.13.5",
+    "socket.io": "^2.0.4"
   }
 }
