@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const config = require('../../config/config');
 
 const schema = new Schema({
   userId: {
@@ -20,9 +21,9 @@ const schema = new Schema({
   pinCode: {
     type: Number
   },
-  admin: {
+  accessLevel: {
     type: Number,
-    default: 0
+    default: config.accessLevel.USER
   },
   email: {
     type: String,

@@ -23,7 +23,7 @@ class UserControllerModel extends ServiceModel {
         if(validateEmail(req.body.email)) {
           let newUser = new User({
             email: req.body.email,
-            admin: 1,
+            accessLevel: 1,
             name: req.body.name,
             userId: Hash.constructor.generate()
           });
@@ -135,7 +135,7 @@ class UserControllerModel extends ServiceModel {
         res.send(err);
       }
       console.log(user);
-      if(user.length > 0 && user[0].admin > 0) {
+      if(user.length > 0 && user[0].accessLevel > 0) {
        User.findOneAndRemove({userId: req.query.deleteUserId}, function (err, user) {
        if(err) {
        res.send(err);
@@ -145,12 +145,12 @@ class UserControllerModel extends ServiceModel {
       } else {
         res.send({
           "errors": {
-            "admin": {
+            "accessLevel": {
               "message": "User got no permission to delete other user.",
               "name": "PermissionError",
-              "properties": {"type": "permission", "message": "User got no permission to delete other user.", "path": "admin"},
+              "properties": {"type": "permission", "message": "User got no permission to delete other user.", "path": "accessLevel"},
               "kind": "permission",
-              "path": "admin",
+              "path": "accessLevel",
               "$isValidatorError": false
             }
           },

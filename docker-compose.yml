@@ -19,4 +19,4 @@ services:
   mongo:
     image: mongo
     volumes:
-      - ./mongo-data:/data/db
+      - ./mongo-docker:/data/db
