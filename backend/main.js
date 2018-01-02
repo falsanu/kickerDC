@@ -19,8 +19,10 @@ const {
 	nodeEnv,
 } = config;
 
-// Loading tables
+// Loading schema
 const Table = require('./models/table/table.model');
+const User = require('./models/user/user.model');
+const Statistic = require('./models/statistic/statistic.model');
 
 // Loading Services to inject dependencies
 const TableController = require('./controllers/table/table.controller');

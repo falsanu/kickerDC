@@ -1,6 +1,6 @@
-module.exports = function(app) {
+module.exports = function (app) {
   let TableController = require('../controllers/table/table.controller');
-  // let UserController = require('../controllers/user/user.controller');
+  let UserController = require('../controllers/user/user.controller');
 
   // table routes
   app.route('/table')
@@ -13,13 +13,13 @@ module.exports = function(app) {
     .patch(TableController.updateTableOccupied);
 
   // user routes
-  // app.route('/user')
-  //   .get(UserController.getAllUser);
-//
-  // app.route('/user/:userId')
-  //   .get(UserController.getUser)
-  //   .post(UserController.addUser)
-  //   .delete(UserController.deleteUser);
+  app.route('/user')
+    .get(UserController.getAllUser)
+    .post(UserController.addUser)
+    .delete(UserController.deleteUser);
+
+  app.route('/user/:userId')
+    .get(UserController.getUser);
 
 };
 

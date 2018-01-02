@@ -7,22 +7,27 @@ const schema = new Schema({
     required: true
   },
   name: {
-    type: String
-  },
-  userApiToken: {
-    type: String
+    type: String,
+    required: true
   },
   password: {
     type: String
   },
   rating: {
-    type: Number
+    type: Number,
+    default: 1500
   },
   pinCode: {
     type: Number
   },
-  statistic: {
-    type: [Statistic]
+  admin: {
+    type: Number,
+    default: 0
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
   }
 });
 

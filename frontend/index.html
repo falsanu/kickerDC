@@ -8,6 +8,13 @@
             width: 100%;
             border: 1px solid black;
             padding: 5px;
+            margin-bottom: 25px;
+        }
+
+        caption {
+            text-align: left;
+            font-size: 1.4em;
+            margin-bottom: 12px;
         }
 
         thead {
@@ -36,6 +43,7 @@
         <td>response</td>
     </tr>
     </thead>
+    <caption>Table</caption>
     <tbody>
     <tr>
         <td>/table</td>
@@ -44,7 +52,7 @@
     </tr>
     <tr>
         <td>/table</td>
-        <td><code>PUT</code></td>
+        <td><code>POST</code></td>
         <td>Creates a new table and returns it</td>
     </tr>
     <tr>
@@ -55,12 +63,45 @@
     <tr>
         <td>/table/:tableId</td>
         <td><code>PUT</code></td>
-        <td>Sets <code>occupied</code> to <code>true</code> and <code>occupiedUntil</code> to the moment when the function is called of the table matching to the given parameter. </td>
+        <td>Sets <code>occupied</code> to <code>false</code> and <code>occupiedUntil</code> to the moment when the function is called of the table matching to the given parameter. </td>
     </tr>
     <tr>
-        <td>/table/occupy/:tableId</td>
-        <td><code>GET</code></td>
+        <td>/table/:tableId</td>
+        <td><code>PATCH</code></td>
         <td>Finds the table with the given Id and set it occupied. It will be reset after 30 minutes by the server.</td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <td>url</td>
+        <td>method</td>
+        <td>response</td>
+    </tr>
+    </thead>
+    <caption>User</caption>
+    <tbody>
+    <tr>
+        <td>/user</td>
+        <td><code>GET</code></td>
+        <td>Returns all registered users.</td>
+    </tr>
+    <tr>
+        <td>/user</td>
+        <td><code>POST</code></td>
+        <td>Adds a user. <code>email</code> and <code>name</code> are required parameters email is unique.</td>
+    </tr>
+    <tr>
+        <td>/user</td>
+        <td><code>DELETE</code></td>
+        <td>Removes a user when the userId has the access level. Query parameter are<code>userId</code> which is the id of the admin and <code>deleteUserId</code> for the id fo the user who has to be deleted.</td>
+    </tr>
+    <tr>
+        <td>/user/:userId</td>
+        <td><code>GET</code></td>
+        <td>Returns the user with the given id.</td>
     </tr>
     </tbody>
 </table>
