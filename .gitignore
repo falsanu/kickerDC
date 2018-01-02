@@ -5,6 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 _tmp/
+mongo-docker
 
 # Runtime data
 pids
