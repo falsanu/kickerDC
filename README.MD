@@ -12,7 +12,10 @@
 
 *Hardware*
 - use photoelectric sensor to trace goals
+    - Sharp GP2Y0D810Z0F
+    - https://github.com/rwaldron/johnny-five/wiki/Motion
 - create score board
+    - Common Anode 7-segment LED display
 - create User PinPad to log users in
 
 *Software*
