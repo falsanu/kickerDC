@@ -27,6 +27,7 @@
 
 <h1>Kicker Dashcam</h1>
 
+<h2>API endpoints</h2>
 <table>
     <thead>
     <tr>
@@ -64,6 +65,45 @@
     </tbody>
 </table>
 
+<h2>Sockets</h2>
+<table>
+    <thead>
+    <tr>
+        <td>name</td>
+        <td>description</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><code>table::occupied::true</code></td>
+        <td>Table was set to occupied.</td>
+    </tr>
+    <tr>
+        <td><code>table::occupied::false</code></td>
+        <td>Table was set to free.</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<div>
+    <h3>Example</h3>
+    <p>
+        TableStatus: <span id="tableStatus">frei</span>
+    </p>
+</div>
+
 <script src="main.js"></script>
+
+
+<!--
+<script src="https://api.kckr.io:63064/socket.io/socket.io.js"></script>
+-->
+<script src="http://localhost:8090/socket.io/socket.io.js"></script>
+<script>
+	const socket = io('http://localhost:8090');
+	//const socket = io('https://api.kckr.io:63064');
+</script>
+
+
 </body>
 </html>

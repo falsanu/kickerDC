@@ -2,23 +2,26 @@
   "name": "kickerDC",
   "version": "1.0.0",
   "description": "The Kicker Dashcam Project",
-  "main": "index.js",
+  "main": "backend/main.js",
   "repository": "https://github.com/falsanu/kickerDC",
   "author": "Jan Fanslau <jan@falsanu.de>",
   "license": "GNU GPLv3",
   "scripts": {
     "prestart": "npm install",
     "dev": "nodemon backend/main.js",
-    "test": "mocha backend/tests --recursive --watch"
+    "test": "mocha backend/tests --recursive --watch",
+    "start": "node backend/main.js"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "mongodb": "^2.2.33",
     "nodemon": "^1.12.1"
   },
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.2",
+    "express-ws": "^3.0.0",
     "mongoose": "^4.13.5",
+    "socket.io": "^2.0.4",
     "request": "^2.83.0"
   }
 }

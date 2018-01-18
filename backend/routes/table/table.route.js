@@ -1,17 +1,17 @@
 module.exports = function(app) {
-  let tableCtrl = require('../../controllers/table/table.controller');
+  let TableController = require('../../controllers/table/table.controller');
 
   // todoList Routes
   app.route('/table')
-    .get(tableCtrl.listAllTables)
-    .post(tableCtrl.createTable);
+    .get(TableController.listAllTables)
+    .post(TableController.createTable);
 
 
   app.route('/table/:tableId')
-    .get(tableCtrl.getTable)
-    .put(tableCtrl.resetTable);
+    .get(TableController.getTable)
+    .put(TableController.resetTable);
 
   app.route('/table/occupy/:tableId')
-    .get(tableCtrl.updateTableOccupied);
+    .get(TableController.updateTableOccupied);
 };
 
